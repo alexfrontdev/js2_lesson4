@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <main>
+        <div class="textdiv"></div>
+        <br>
+        <div class="form">
+            <p><input type="text" placeholder="имя" id="name"></p>
+            <p><input type="text" placeholder="+7(000)000-0000" id="phone_number"></p>
+            <p> <input type="text" placeholder="email" id="email"></p>
+            <p> <textarea name="" id="" cols="30" rows="10" id="textarea"></textarea></p>
+            <button onclick="checkform()">Отправить</button>
+
+        </div>
+    </main>
+    <script>
+
+        function checkform() {
+            let name = document.querySelector('#name');
+            let namevalue = document.querySelector('#name').value;
+            let phone = document.querySelector('#phone_number');
+            let phone_number = document.querySelector('#phone_number').value;
+            let email = document.querySelector('#email');
+            let emailvalue = document.querySelector('#email').value;
+            let textarea = document.querySelector('#textarea');
+
+
+
+            const name_regex = /^[а-яa-z]+$/i;
+            const phone_regex = /^\+7\([0-9]{3}\)[0-9]{3}-[0-9]{4}$/;
+            const email_regex = /[a-zA-Z-.]+@[a-z]+\.[a-z]{2,3}/;
+
+
+            if (name_regex.test(namevalue) == true) {
+                name.style.borderColor = 'green';
+            }
+            else {
+                name.style.borderColor = 'red';
+                alert('введите корректно имя, разрешены только буквы: кириллица и латиница');
+            }
+
+            if (phone_regex.test(phone_number) == true) {
+                phone.style.borderColor = 'green';
+            }
+            else {
+                phone.style.borderColor = 'red';
+                alert('введите корректно телефон');
+            }
+
+            if (email_regex.test(emailvalue) == true) {
+                email.style.borderColor = 'green';
+            }
+            else {
+                email.style.borderColor = 'red';
+                alert('введите корректно электронную почту');
+            }
+
+
+
+        }
+
+        let str = "В русском языке предложения с прямой речью служат для дословной передачи чужих слов. При этом важным является также указание на того, кто их произнес, поэтому в составе такого предложения есть слова автора и его высказывание. Например, aren't, сказал, подумал, произнес, утвердил, подсказал и другие: 'Что-то похолодало, может, неподалеку град прошел', - подумал Петр. Я тебе приказываю: 'Оставь брата в покое, пусть сам разбирается со своей жизнью'. 'Почему здесь никого нет, - удивилась Аленка, - я пришла раньше или опоздала?' 'Вот так всегда', - тяжело вздохнула бабушка.";
+
+        const reg = /\B'|'\B/g;
+        str = str.replace(reg, "''");
+
+        document.querySelector('.textdiv').innerHTML = str;
+
+
+    </script>
+
+</body>
+
+</html>
